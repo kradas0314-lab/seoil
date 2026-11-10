@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1f0eb">
+  <meta name="description" content="정혁종의 그래픽·편집 디자인 포트폴리오">
+  <title>정혁종 — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f1f0eb;--surface:#f8f7f3;--ink:#111;--muted:#77746d;--line:rgba(17,17,17,.2);--red:#ed2939;--gutter:clamp(20px,5vw,76px);--nav-h:88px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 24px)}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR","맑은 고딕",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .site-header{height:var(--nav-h);position:sticky;top:0;z-index:10;background:rgba(248,247,243,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter)}
+    .brand{font-size:clamp(22px,2vw,30px);font-weight:600;letter-spacing:-.06em;text-decoration:none;white-space:nowrap}
+    .nav{display:flex;align-items:center;gap:clamp(24px,4vw,64px)}
+    .nav a{text-decoration:none;font-size:clamp(14px,1.25vw,18px);font-weight:600;letter-spacing:.11em;position:relative;padding:12px 0}
+    .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:5px;height:2px;background:var(--red);transition:right .25s ease}
+    .nav a:hover::after,.nav a:focus-visible::after{right:0}
+    .hero{min-height:min(780px,calc(100svh - var(--nav-h)));padding:clamp(56px,10vh,120px) var(--gutter) 70px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .eyebrow,.section-index,.micro-label{font-size:11px;line-height:1.4;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+    .hero-title{font-family:"Noto Serif KR","바탕",Batang,serif;font-size:clamp(64px,16vw,230px);line-height:.88;font-weight:400;letter-spacing:-.055em;margin:clamp(36px,8vh,100px) 0 0;white-space:nowrap;max-width:100%}
+    .hero-bottom{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(250px,1.2fr);align-items:end;gap:clamp(22px,4vw,54px);margin-top:clamp(55px,8vh,100px)}
+    .hero-name{font-size:clamp(28px,4vw,54px);font-weight:600;line-height:1.08;letter-spacing:-.07em;margin:0}
+    .hero-role{font-size:clamp(15px,1.4vw,20px);color:var(--muted);margin:12px 0 0}
+    .hero-copy{font-size:clamp(15px,1.25vw,18px);line-height:1.85;color:#393833;margin:0;max-width:44ch;word-break:keep-all}
+    .section{padding:clamp(88px,12vw,170px) var(--gutter)}
+    .section-head{display:grid;grid-template-columns:minmax(110px,.45fr) 1.55fr;gap:24px;align-items:start;margin-bottom:clamp(44px,7vw,90px)}
+    .section-index{color:var(--muted);padding-top:11px}
+    .section-title{font-family:"Noto Serif KR","바탕",Batang,serif;font-size:clamp(48px,9vw,128px);font-weight:400;letter-spacing:-.065em;line-height:1;margin:0}
+    .works .section-title,.about .section-title,.contact .section-title{font-family:"Noto Sans KR","맑은 고딕",Arial,sans-serif;font-weight:400;letter-spacing:-.07em}
+    .works{background:var(--surface)}
+    .work-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(34px,5vw,68px) clamp(14px,1.8vw,26px)}
+    .work-card{margin:0;min-width:0}
+    .work-open{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}
+    .work-image{display:block;width:100%;aspect-ratio:1.414/1;object-fit:contain;object-position:center;background:#e9e8e3;transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .45s}
+    .work-card--portrait .work-image{aspect-ratio:.72/1}
+    .work-card--wide .work-image{aspect-ratio:1.8/1}
+    .work-open:hover .work-image{transform:scale(.985);filter:saturate(1.04)}
+    .work-meta{display:flex;justify-content:space-between;gap:18px;align-items:baseline;border-top:1px solid var(--line);padding-top:14px;margin-top:17px}
+    .work-title{font-size:clamp(17px,2vw,25px);font-weight:500;letter-spacing:-.04em}
+    .work-type{font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+    .work-description{max-width:56ch;font-size:14px;line-height:1.75;color:#5d5a53;margin:11px 0 0;word-break:keep-all}
+    .about{display:grid;grid-template-columns:minmax(180px,.75fr) 1.25fr;gap:clamp(40px,10vw,150px)}
+    .about .section-head{display:block;margin:0}
+    .about .section-title{margin-top:24px}
+    .about-content{padding-top:11px}
+    .about-lead{font-size:clamp(22px,3.3vw,44px);line-height:1.42;font-weight:400;letter-spacing:-.055em;word-break:keep-all;margin:0 0 40px}
+    .about-text{font-size:16px;line-height:1.9;color:#4d4a44;max-width:56ch;word-break:keep-all;margin:0}
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+    .skill{border:1px solid var(--line);border-radius:99px;padding:10px 15px;font-size:13px;color:#4d4a44}
+    .profile-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:50px;border-top:1px solid var(--line);padding-top:21px}
+    .profile-facts p{display:flex;flex-direction:column;gap:9px;margin:0;font-size:15px;line-height:1.6}
+    .profile-facts span{font-size:10px;letter-spacing:.16em;color:var(--muted)}
+    .contact{background:var(--ink);color:#fff;padding-top:clamp(74px,10vw,130px);padding-bottom:clamp(55px,8vw,100px)}
+    .contact .section-head{margin-bottom:50px}
+    .contact .section-index{color:#a8a69f}
+    .contact .section-title{font-size:clamp(48px,10vw,138px)}
+    .contact-row{display:flex;justify-content:space-between;align-items:end;gap:24px;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:18px}
+    .contact-email{font-size:clamp(20px,4.6vw,62px);font-weight:300;letter-spacing:-.055em;text-decoration-thickness:1px;text-underline-offset:8px;overflow-wrap:anywhere}
+    .contact-arrow{font-size:clamp(28px,4vw,50px);font-weight:300}
+    .footer-note{font-family:"Noto Serif KR","바탕",Batang,serif;font-size:13px;letter-spacing:.08em;color:#a8a69f;margin:24px 0 0}
+    dialog{width:min(1100px,calc(100vw - 32px));max-width:none;max-height:calc(100svh - 32px);padding:0;border:0;background:var(--surface);color:var(--ink);box-shadow:0 24px 80px rgba(0,0,0,.25)}
+    dialog::backdrop{background:rgba(10,10,10,.78);backdrop-filter:blur(4px)}
+    .modal-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+    .modal-title{font-size:15px;font-weight:500;margin:0}
+    .modal-close{border:0;background:none;color:inherit;font:inherit;font-size:25px;cursor:pointer;line-height:1;padding:4px 8px}
+    .modal-image{display:block;max-width:100%;max-height:calc(100svh - 100px);object-fit:contain;margin:auto}
+    :focus-visible{outline:2px solid var(--red);outline-offset:4px}
+    @media(max-width:1050px){.work-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:700px){:root{--nav-h:72px}.site-header{padding-inline:18px}.brand{font-size:21px}.nav{gap:18px}.nav a{font-size:12px;letter-spacing:.08em}.hero{min-height:auto;padding:58px 20px 54px}.hero-title{font-size:clamp(50px,16vw,112px);letter-spacing:-.055em}.hero-bottom{grid-template-columns:1fr;gap:24px;margin-top:62px}.hero-copy{max-width:38ch}.section{padding:82px 20px}.section-head{grid-template-columns:1fr;gap:16px;margin-bottom:38px}.section-index{padding-top:0}.section-title{font-size:clamp(54px,16vw,88px)}.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 14px}.work-image{aspect-ratio:1.414/1}.work-card--portrait .work-image{aspect-ratio:.72/1}.work-card--wide .work-image{aspect-ratio:1.65/1}.work-meta{padding-top:12px;margin-top:13px;display:block}.work-title{display:block;font-size:16px}.work-type{display:block;margin-top:5px;font-size:10px}.work-description{font-size:12px;line-height:1.65}.about{grid-template-columns:1fr;gap:36px}.about .section-title{margin-top:12px}.about-lead{font-size:27px;margin-bottom:24px}.about-text{font-size:15px}.skills{margin-top:26px;gap:8px}.skill{font-size:12px;padding:8px 12px}.profile-facts{gap:18px;margin-top:34px;padding-top:17px}.profile-facts p{font-size:13px}.contact{padding-top:75px;padding-bottom:44px}.contact .section-head{margin-bottom:34px}.contact-row{align-items:start}.contact-email{font-size:clamp(20px,6vw,28px)}.contact-arrow{font-size:26px}}
+    @media(max-width:460px){.work-grid{grid-template-columns:1fr;gap:42px}.work-meta{display:flex}.work-title{font-size:17px}.work-type{margin-top:0}.work-description{font-size:13px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="맨 위로">정혁종</a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#works">WORKS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Graphic · Editorial · Visual</p>
+      <h1 class="hero-title" id="hero-title">PORTFOLIO</h1>
+      <div class="hero-bottom">
+        <div>
+          <p class="hero-name">정혁종</p>
+          <p class="hero-role">Graphic &amp; Editorial Designer</p>
+        </div>
+        <p class="hero-copy">책과 이미지, 글이 만나는 지점에서 정보를 선명하고 인상적으로 전달하는 디자인을 고민합니다.</p>
+      </div>
+    </section>
+
+    <section class="section works" id="works" aria-label="Selected works">
+      <div class="section-head">
+        <span class="section-index">01 / Selected works</span>
+      </div>
+      <div class="work-grid">
+        <article class="work-card">
+          <button class="work-open" type="button" data-title="책 표지 — 얼굴 활용 디자인" data-full="01/works/portfolio-04.png" aria-label="책 표지 — 얼굴 활용 디자인, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-04.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">책 표지 — 얼굴 활용 디자인</span><span class="work-type">Book cover</span></span>
+            <span class="work-description">흑백 대비와 인물 일러스트를 활용해 표지의 주제를 선명하게 드러냈습니다.</span>
+          </button>
+        </article>
+        <article class="work-card">
+          <button class="work-open" type="button" data-title="책 표지 — 여행 잡지" data-full="01/works/portfolio-05.png" aria-label="책 표지 — 여행 잡지, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-05.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">책 표지 — 여행 잡지</span><span class="work-type">Editorial</span></span>
+            <span class="work-description">제주 바다 사진과 제목의 크기 대비로 여행지의 분위기를 표현했습니다.</span>
+          </button>
+        </article>
+        <article class="work-card work-card--wide">
+          <button class="work-open" type="button" data-title="영어 교과서 표지" data-full="01/works/portfolio-06.png" aria-label="영어 교과서 표지, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-06.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">영어 교과서 표지</span><span class="work-type">Textbook</span></span>
+            <span class="work-description">교과서의 학습 목적을 색상과 이미지, 정보 위계로 전달하도록 구성했습니다.</span>
+          </button>
+        </article>
+        <article class="work-card">
+          <button class="work-open" type="button" data-title="명함 — 로고 디자인" data-full="01/works/portfolio-07.png" aria-label="명함 — 로고 디자인, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-07.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">명함 — 로고 디자인</span><span class="work-type">Identity</span></span>
+            <span class="work-description">이니셜을 시각 요소로 발전시켜 이름과 연락 정보가 또렷한 명함을 만들었습니다.</span>
+          </button>
+        </article>
+        <article class="work-card work-card--portrait">
+          <button class="work-open" type="button" data-title="책 광고 포스터" data-full="01/works/portfolio-08.png" aria-label="책 광고 포스터, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-08.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">책 광고 포스터</span><span class="work-type">Poster</span></span>
+            <span class="work-description">책의 과학 주제를 원형 그래픽과 강한 명암으로 표현한 홍보 포스터입니다.</span>
+          </button>
+        </article>
+        <article class="work-card work-card--portrait">
+          <button class="work-open" type="button" data-title="여행 광고 포스터" data-full="01/works/portfolio-09.png" aria-label="여행 광고 포스터, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-09.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">여행 광고 포스터</span><span class="work-type">Poster</span></span>
+            <span class="work-description">서울의 대표 풍경과 짧은 문구를 결합해 여행지의 인상을 강조했습니다.</span>
+          </button>
+        </article>
+        <article class="work-card">
+          <button class="work-open" type="button" data-title="책만사 잡지 내지" data-full="01/works/portfolio-10.png" aria-label="책만사 잡지 내지, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-10.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">책만사 잡지 내지</span><span class="work-type">Magazine</span></span>
+            <span class="work-description">글과 사진의 흐름을 살리고, 읽기 편하도록 정보의 위계를 정리했습니다.</span>
+          </button>
+        </article>
+        <article class="work-card">
+          <button class="work-open" type="button" data-title="그림책 내지" data-full="01/works/portfolio-11.png" aria-label="그림책 내지, 전체 페이지 크게 보기">
+            <img class="work-image" src="01/works/thumbs/portfolio-11.jpg" alt="" loading="lazy">
+            <span class="work-meta"><span class="work-title">그림책 내지</span><span class="work-type">Illustrated book</span></span>
+            <span class="work-description">장면과 이야기의 순서를 고려해 페이지 사이의 연결감을 구성했습니다.</span>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-label="Profile">
+      <div class="section-head">
+        <span class="section-index">02 / Profile</span>
+      </div>
+      <div class="about-content">
+        <p class="about-lead">읽는 사람의 시선과 이야기의 흐름을 생각하는 디자이너, 정혁종입니다.</p>
+        <p class="about-text">책 표지와 내지, 포스터, 명함 등 다양한 그래픽 작업을 통해 이미지와 글이 조화롭게 정보를 전달하는 방법을 탐구합니다. 내용의 성격에 맞는 시각 언어를 찾고, 읽기 쉬우면서도 기억에 남는 결과물을 만드는 데 집중합니다.</p>
+        <div class="skills" aria-label="관심 분야">
+          <span class="skill">편집 디자인</span><span class="skill">책 표지</span><span class="skill">포스터</span><span class="skill">브랜딩</span><span class="skill">일러스트레이션</span>
+        </div>
+        <div class="profile-facts" aria-label="학력 및 자격">
+          <p><span>EDUCATION</span>서울대학교 미디어출판학과</p>
+          <p><span>CERTIFICATE</span>그림책 창작지도사 2급</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section contact" id="contact" aria-label="Contact">
+      <div class="section-head">
+        <span class="section-index">03 / Contact</span>
+      </div>
+      <div class="contact-row">
+        <a class="contact-email" href="mailto:jhj5314kr@gmail.com">jhj5314kr@gmail.com</a>
+        <span class="contact-arrow" aria-hidden="true">↗</span>
+      </div>
+      <p class="footer-note">정혁종 · Portfolio</p>
+    </footer>
+  </main>
+
+  <dialog id="work-dialog" aria-label="작품 미리보기">
+    <div class="modal-top"><p class="modal-title" id="modal-title"></p><button class="modal-close" type="button" aria-label="미리보기 닫기">×</button></div>
+    <img class="modal-image" src="" alt="">
+  </dialog>
+  <script>
+    const dialog=document.querySelector('#work-dialog');
+    const modalImage=dialog.querySelector('.modal-image');
+    const modalTitle=dialog.querySelector('.modal-title');
+    document.querySelectorAll('.work-open').forEach(button=>button.addEventListener('click',()=>{
+      modalImage.src=button.dataset.full;
+      modalImage.alt=button.dataset.title;
+      modalTitle.textContent=button.dataset.title;
+      dialog.showModal();
+    }));
+    dialog.querySelector('.modal-close').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+    dialog.addEventListener('close',()=>{modalImage.removeAttribute('src')});
+  </script>
+</body>
+</html>
